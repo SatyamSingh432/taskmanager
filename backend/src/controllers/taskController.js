@@ -1,4 +1,7 @@
-import { createTaskService } from "../services/taskService.js";
+import {
+  createTaskService,
+  getAllTasksService,
+} from "../services/taskService.js";
 
 export const createTask = async (req, res) => {
   try {
@@ -7,5 +10,15 @@ export const createTask = async (req, res) => {
     res.status(201).json(milestone);
   } catch (err) {
     res.status(500).json({ error: "Error creating Task." });
+  }
+};
+
+export const getTask = async (req, res) => {
+  try {
+    const tasks = await getAllTasksService();
+    res.status(200).json(tasks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error fetching tasks." });
   }
 };
