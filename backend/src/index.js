@@ -4,8 +4,17 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import taskRoutes from "./routes/taskRoutes.js";
+import fs from "fs";
+import path from "path";
+
+const uploadDir = path.join(process.cwd(), "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 const app = express();
+
 dotenv.config();
 
 app.use(cors());

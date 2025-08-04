@@ -1,7 +1,12 @@
 import Task from "../models/Task.js";
 
-export const createTaskService = async ({ title, description, deadline }) => {
-  const task = await Task.create({ title, description, deadline });
+export const createTaskService = async ({
+  title,
+  description,
+  deadline,
+  file,
+}) => {
+  const task = await Task.create({ title, description, deadline, file });
   return task;
 };
 

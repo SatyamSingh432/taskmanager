@@ -1,4 +1,6 @@
 import express from "express";
+import multer from "multer";
+
 import {
   createTask,
   getTask,
@@ -8,7 +10,13 @@ import {
 
 const router = express.Router();
 
-router.post("/", createTask);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+});
+const upload = multer({ storage });
+
+router.post("/", upload.single("file"), createTask);
 router.get("/", getTask);
 router.put("/:id", updateTask);
 router.delete("/:id", deleteTask);
