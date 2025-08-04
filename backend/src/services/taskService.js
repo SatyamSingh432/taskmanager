@@ -8,3 +8,7 @@ export const createTaskService = async ({ title, description, deadline }) => {
 export const getAllTasksService = async () => {
   return await Task.find();
 };
+
+export const updateTaskService = async (id, updateData) => {
+  return await Task.findByIdAndUpdate(id, updateData, { new: true });
+};
