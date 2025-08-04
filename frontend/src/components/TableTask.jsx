@@ -2,7 +2,14 @@ import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 
-const TableTask = ({ title, description, deadline, status }) => {
+const TableTask = ({
+  title,
+  description,
+  deadline,
+  status,
+  setIsModalOpen,
+  setEditForm,
+}) => {
   return (
     <tr className="border-b border-gray-300 text-left text-xs hover:bg-gray-50 py-5">
       <td className="px-2  py-4">{title}</td>
@@ -27,6 +34,10 @@ const TableTask = ({ title, description, deadline, status }) => {
 
         <button
           title="Edit"
+          onClick={() => {
+            setIsModalOpen(true);
+            setEditForm(true);
+          }}
           className="text-purple-600 hover:text-purple-800 px-4 cursor-pointer"
         >
           <MdModeEdit />

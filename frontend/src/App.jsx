@@ -1,6 +1,10 @@
+import { useState } from "react";
 import NavBar from "./components/NavBar";
 import TableTask from "./components/TableTask";
+import Form from "./components/Form";
+
 import "./App.css";
+
 const tasks = [
   {
     _id: "1",
@@ -28,6 +32,12 @@ const tasks = [
   },
 ];
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditForm, setEditForm] = useState(false);
+
+  const handleSaveTask = (formData) => {
+    console.log("Task data submitted:", formData);
+  };
   return (
     <div>
       <NavBar />
@@ -48,11 +58,28 @@ function App() {
                 description={ele.description}
                 deadline={ele.deadline}
                 status={ele.status}
+                setIsModalOpen={setIsModalOpen}
+                setEditForm={setEditForm}
               />
             );
           })}
         </table>
       </div>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="fixed bottom-6 right-6 bg-blue-600 text-white  rounded-full px-4 py-2 shadow-lg text-xl"
+      >
+        +
+      </button>
+      <Form
+        isEditForm={isEditForm}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setEditForm(false);
+        }}
+        onSave={handleSaveTask}
+      />
     </div>
   );
 }
