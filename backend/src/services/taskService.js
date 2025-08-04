@@ -12,3 +12,7 @@ export const getAllTasksService = async () => {
 export const updateTaskService = async (id, updateData) => {
   return await Task.findByIdAndUpdate(id, updateData, { new: true });
 };
+
+export const deleteTaskService = async (id) => {
+  return await Task.findByIdAndDelete(id);
+};
