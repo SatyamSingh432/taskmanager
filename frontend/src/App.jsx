@@ -35,6 +35,13 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditForm, setEditForm] = useState(false);
 
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    deadline: "",
+    file: null,
+  });
+
   const handleSaveTask = (formData) => {
     console.log("Task data submitted:", formData);
   };
@@ -72,6 +79,8 @@ function App() {
         +
       </button>
       <Form
+        formData={formData}
+        setFormData={setFormData}
         isEditForm={isEditForm}
         isOpen={isModalOpen}
         onClose={() => {

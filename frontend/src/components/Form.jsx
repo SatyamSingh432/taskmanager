@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { createTask } from "../utils/Apis";
 
 const Form = ({
   isOpen,
   onClose,
-  onSave,
+  // onSave,
+  setFormData,
+  formData,
   isEditForm = false,
   initialData = {},
 }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    deadline: "",
-    file: null,
-  });
-  //   console.log(isEditForm);
-
   useEffect(() => {
     if (isEditForm && initialData) {
       setFormData({
@@ -36,10 +31,13 @@ const Form = ({
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    onSave(formData);
+    // console.log(formData);
+    console.log(formData.file);
+    await createTask(formData);
+    //  setFormData()
+    // onSave(formData);
     onClose();
   };
 
