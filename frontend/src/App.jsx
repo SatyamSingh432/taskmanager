@@ -1,46 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import TableTask from "./components/TableTask";
 import Form from "./components/Form";
+import { getTasks } from "./utils/Apis";
 
 import "./App.css";
 
-const tasks = [
-  {
-    _id: "1",
-    title: "Learn React",
-    description: "Refer to!!",
-    deadline: "2024-08-19",
-    status: "DONE",
-    linkedFile: true,
-  },
-  {
-    _id: "2",
-    title: "Test",
-    description: "Test",
-    deadline: "2024-08-16",
-    status: "TODO",
-    linkedFile: false,
-  },
-  {
-    _id: "3",
-    title: "Sample Task",
-    description: "Test description",
-    deadline: "2024-08-17",
-    status: "DONE",
-    linkedFile: true,
-  },
-];
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditForm, setEditForm] = useState(false);
-
+  const [allTasks, setAllTasks] = useState([]);
+  const [updatedData, setUpdateData] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     deadline: "",
     file: null,
   });
+
+  useEffect(() => {
+    const res = async () => {
+      const data = await getTasks();
+      console.log(data);
+      setAllTasks(data);
+    };
+    res();
+  }, [isEditForm, updatedData]);
 
   const handleSaveTask = (formData) => {
     console.log("Task data submitted:", formData);
@@ -57,13 +42,15 @@ function App() {
             <th className="px-2  w-[120px] py-4">Status</th>
             <th className="px-2  w-[180px] py-4"> Action</th>
           </tr>
-          {tasks.map((ele) => {
+          {allTasks?.map((ele) => {
+            const dateObj = new Date(ele.deadline);
+            const formatted = dateObj.toLocaleDateString("en-IN");
             return (
               <TableTask
-                key={ele.id}
+                key={ele._id}
                 title={ele.title}
                 description={ele.description}
-                deadline={ele.deadline}
+                deadline={formatted}
                 status={ele.status}
                 setIsModalOpen={setIsModalOpen}
                 setEditForm={setEditForm}
@@ -88,6 +75,7 @@ function App() {
           setEditForm(false);
         }}
         onSave={handleSaveTask}
+        setUpdateData={setUpdateData}
       />
     </div>
   );

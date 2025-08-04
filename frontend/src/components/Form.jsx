@@ -9,6 +9,7 @@ const Form = ({
   formData,
   isEditForm = false,
   initialData = {},
+  setUpdateData,
 }) => {
   useEffect(() => {
     if (isEditForm && initialData) {
@@ -33,9 +34,8 @@ const Form = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData);
-    console.log(formData.file);
     await createTask(formData);
+    setUpdateData(formData);
     //  setFormData()
     // onSave(formData);
     onClose();
