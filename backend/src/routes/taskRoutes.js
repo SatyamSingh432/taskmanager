@@ -16,9 +16,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.post("/", upload.single("file"), createTask);
-router.get("/", getTask);
-router.put("/:id", updateTask);
-router.delete("/:id", deleteTask);
+router.post("/task", upload.single("file"), createTask);
+router.get("/task", getTask);
+router.put("/task/:id", updateTask);
+router.delete("/task/:id", deleteTask);
 
 export default router;

@@ -8,7 +8,6 @@ import {
 export const createTask = async (req, res) => {
   try {
     const { title, description, deadline, file } = req.body;
-    console.log(req.file);
     const milestone = await createTaskService({
       title,
       description,
