@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+import { AiOutlineFileUnknown } from "react-icons/ai";
 import { deleteTask, updateTask, handleDownloadFile } from "../utils/apis.js";
 
 const TableTask = ({
@@ -43,7 +44,7 @@ const TableTask = ({
       </td>
       <td className="px-2  py-4">
         <span
-          className={`text-white text-xs px-3 py-1 rounded-full ${
+          className={`text-white text-xs px-3 py-1 rounded-full shadow-2xl  ${
             status === "TODO" ? "bg-orange-500" : "bg-green-600"
           } cursor-pointer`}
           onClick={async () => {
@@ -83,7 +84,11 @@ const TableTask = ({
             <FaDownload />
           </button>
         ) : (
-          <span>no</span>
+          <span>
+            <AiOutlineFileUnknown
+              style={{ display: "inline", fontSize: "14px", color: "red" }}
+            />
+          </span>
         )}
 
         <button
