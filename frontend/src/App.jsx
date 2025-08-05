@@ -17,6 +17,7 @@ function App() {
     title: "",
     description: "",
     deadline: "",
+    status: "",
     file: null,
   });
 

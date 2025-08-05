@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
-import { deleteTask } from "../utils/Apis";
+import { deleteTask, updateTask } from "../utils/Apis";
 
 const TableTask = ({
   title,
@@ -35,7 +35,28 @@ const TableTask = ({
         <span
           className={`text-white text-xs px-3 py-1 rounded-full ${
             status === "TODO" ? "bg-orange-500" : "bg-green-600"
-          }`}
+          } cursor-pointer`}
+          onClick={async () => {
+            if (status === "TODO") {
+              const statusToggle = {
+                title,
+                description,
+                deadline,
+                status: "DONE",
+              };
+              await updateTask(taskDelete, statusToggle);
+              setUpdateData(statusToggle);
+            } else {
+              const statusToggle = {
+                title,
+                description,
+                deadline,
+                status: "TODO",
+              };
+              await updateTask(taskDelete, statusToggle);
+              setUpdateData(statusToggle);
+            }
+          }}
         >
           {status}
         </span>

@@ -36,6 +36,7 @@ export const updateTask = async (id, taskData) => {
       title: taskData.title,
       description: taskData.description,
       deadline: taskData.deadline,
+      status: taskData.status,
     });
     return response.data;
   } catch (error) {

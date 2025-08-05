@@ -45,7 +45,6 @@ export const deleteTask = async (req, res) => {
   try {
     const userId = req.params.id;
     const deleted = await deleteTaskService(userId);
-    console.log(deleted);
     if (deleted) {
       return res.status(200).json({ message: "Task deleted successfully." });
     } else {
