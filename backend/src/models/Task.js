@@ -6,7 +6,7 @@ const taskSchema = new mongoose.Schema({
   status: { type: String, enum: ["TODO", "DONE"], default: "TODO" },
   file: {
     type: "Buffer",
-    contentType: "application/pdf",
+    contentType: String,
   },
   createdOn: {
     type: Date,

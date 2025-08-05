@@ -8,13 +8,18 @@ import {
 export const createTask = async (req, res) => {
   try {
     const { title, description, deadline, file } = req.body;
-    const milestone = await createTaskService({
+    // const linkidFile = req.file
+    //   ? { data: req.file.buffer, contentType: req.file.mimetype }
+    //   : null;
+
+    // console.log(linkidFile);
+    const task = await createTaskService({
       title,
       description,
       deadline,
-      file: req.file?.filename, // here always use req.file.filename bcz req.file is just a obj
+      file: req.file.buffer,
     });
-    res.status(201).json(milestone);
+    res.status(201).json(task);
   } catch (err) {
     res.status(500).json({ error: "Error creating Task." });
   }

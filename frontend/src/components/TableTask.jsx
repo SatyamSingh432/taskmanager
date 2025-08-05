@@ -1,13 +1,14 @@
 import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
-import { deleteTask, updateTask } from "../utils/apis.js";
+import { deleteTask, updateTask, handleDownloadFile } from "../utils/apis.js";
 
 const TableTask = ({
   title,
   description,
   taskDelete,
   deadline,
+  pdfFile,
   status,
   setIsModalOpen,
   setEditForm,
@@ -71,12 +72,19 @@ const TableTask = ({
         </span>
       </td>
       <td className="px-2  py-3">
-        <button
-          title="Download"
-          className="text-blue-600 hover:text-blue-800 cursor-pointer"
-        >
-          <FaDownload />
-        </button>
+        {pdfFile ? (
+          <button
+            title="Download"
+            className="text-blue-600 hover:text-blue-800 cursor-pointer"
+            onClick={() =>
+              handleDownloadFile(new Uint8Array(pdfFile.data), pdfFile.type)
+            }
+          >
+            <FaDownload />
+          </button>
+        ) : (
+          <span>no</span>
+        )}
 
         <button
           title="Edit"

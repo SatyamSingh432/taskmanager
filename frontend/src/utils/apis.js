@@ -1,8 +1,9 @@
 import axios from "axios";
-// const BASE_URL = "http://localhost:8082/v1/task";
-const BASE_URL = "https://taskmanager-4nhi.onrender.com/v1/task";
+const BASE_URL = "http://localhost:8082/v1/task";
+// const BASE_URL = "https://taskmanager-4nhi.onrender.com/v1/task";
 
 export const createTask = async (taskData) => {
+  console.log(taskData.file);
   try {
     const formData = new FormData();
     formData.append("title", taskData.title);
@@ -51,4 +52,16 @@ export const deleteTask = async (id) => {
   } catch (error) {
     console.error(`Error deleting task :`, error.message);
   }
+};
+
+export const handleDownloadFile = async (data, contentType) => {
+  const blob = new Blob([data], { type: contentType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `task-file-${new Date().toLocaleTimeString()}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 };

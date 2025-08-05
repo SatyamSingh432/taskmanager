@@ -58,6 +58,7 @@ function App() {
                 return (
                   <TableTask
                     key={ele._id}
+                    pdfFile={ele.file}
                     taskDelete={ele._id}
                     title={ele.title}
                     description={ele.description}

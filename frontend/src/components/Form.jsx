@@ -90,7 +90,7 @@ const Form = ({
               </label>
               <input
                 type="file"
-                placeholder="we"
+                // style={{ display: "none" }}
                 name="file"
                 id="file-input"
                 accept="application/pdf"
