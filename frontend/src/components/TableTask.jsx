@@ -86,7 +86,12 @@ const TableTask = ({
         ) : (
           <span>
             <AiOutlineFileUnknown
-              style={{ display: "inline", fontSize: "14px", color: "red" }}
+              style={{
+                display: "inline",
+                fontSize: "14px",
+                color: "red",
+                cursor: "not-allowed",
+              }}
             />
           </span>
         )}
