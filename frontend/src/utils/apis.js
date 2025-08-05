@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8082/v1";
+const BASE_URL = "http://localhost:8082/v1/task";
 
 export const createTask = async (taskData) => {
   try {
@@ -36,7 +36,6 @@ export const updateTask = async (id, taskData) => {
       title: taskData.title,
       description: taskData.description,
       deadline: taskData.deadline,
-      file: taskData.file,
     });
     return response.data;
   } catch (error) {

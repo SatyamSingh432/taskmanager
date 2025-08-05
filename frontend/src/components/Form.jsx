@@ -1,29 +1,14 @@
-import React, { useEffect } from "react";
-import { createTask } from "../utils/Apis";
+import { createTask, updateTask } from "../utils/Apis";
 
 const Form = ({
   isOpen,
   onClose,
-  // onSave,
   setFormData,
   formData,
-  isEditForm = false,
-  initialData = {},
+  isEditForm,
   setUpdateData,
+  taskId,
 }) => {
-  useEffect(() => {
-    if (isEditForm && initialData) {
-      setFormData({
-        title: initialData.title || "",
-        description: initialData.description || "",
-        deadline: initialData.deadline
-          ? initialData.deadline.substring(0, 10)
-          : "",
-        linkedFile: null,
-      });
-    }
-  }, [initialData, isEditForm]);
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
@@ -34,10 +19,15 @@ const Form = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createTask(formData);
-    setUpdateData(formData);
-    //  setFormData()
-    // onSave(formData);
+    if (!isEditForm) {
+      await createTask(formData);
+      setUpdateData(formData);
+    } else {
+      if (taskId) {
+        await updateTask(taskId, formData);
+        setUpdateData(formData);
+      }
+    }
     onClose();
   };
 

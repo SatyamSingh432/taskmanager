@@ -5,11 +5,25 @@ import { MdModeEdit } from "react-icons/md";
 const TableTask = ({
   title,
   description,
+  // task,
   deadline,
   status,
   setIsModalOpen,
   setEditForm,
+  setFormData,
+  setTaskId,
 }) => {
+  const editHandler = () => {
+    setIsModalOpen(true);
+    setEditForm(true);
+    setTaskId();
+    setFormData({
+      title,
+      deadline,
+      description,
+    });
+  };
+
   return (
     <tr className="border-b border-gray-300 text-left text-xs hover:bg-gray-50 py-5">
       <td className="px-2  py-4">{title}</td>
@@ -34,10 +48,7 @@ const TableTask = ({
 
         <button
           title="Edit"
-          onClick={() => {
-            setIsModalOpen(true);
-            setEditForm(true);
-          }}
+          onClick={editHandler}
           className="text-purple-600 hover:text-purple-800 px-4 cursor-pointer"
         >
           <MdModeEdit />
