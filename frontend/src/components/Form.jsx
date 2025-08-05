@@ -22,10 +22,22 @@ const Form = ({
     if (!isEditForm) {
       await createTask(formData);
       setUpdateData(formData);
+      setFormData({
+        title: "",
+        description: "",
+        deadline: "",
+        file: null,
+      });
     } else {
       if (taskId) {
         await updateTask(taskId, formData);
         setUpdateData(formData);
+        setFormData({
+          title: "",
+          description: "",
+          deadline: "",
+          file: null,
+        });
       }
     }
     onClose();
@@ -91,7 +103,15 @@ const Form = ({
           <div className="flex justify-between space-x-4">
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setFormData({
+                  title: "",
+                  description: "",
+                  deadline: "",
+                  file: null,
+                });
+              }}
               className="text-blue-600 cursor-pointer"
             >
               Cancel
