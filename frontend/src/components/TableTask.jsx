@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
-import { deleteTask, updateTask } from "../utils/Apis";
+import { deleteTask, updateTask } from "../utils/apis.js";
 
 const TableTask = ({
   title,

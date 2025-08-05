@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import TableTask from "./components/TableTask";
 import Form from "./components/Form";
-import { getTasks } from "./utils/Apis";
+import { getTasks } from "./utils/apis.js";
 
 import "./App.css";
 
