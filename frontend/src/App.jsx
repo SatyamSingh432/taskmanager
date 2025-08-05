@@ -52,6 +52,7 @@ function App() {
               return (
                 <TableTask
                   key={ele._id}
+                  taskDelete={ele._id}
                   title={ele.title}
                   description={ele.description}
                   deadline={formatted}
@@ -60,6 +61,7 @@ function App() {
                   setEditForm={setEditForm}
                   setFormData={setFormData}
                   setTaskId={() => setTaskId(ele._id)}
+                  setUpdateData={setUpdateData}
                 />
               );
             })}

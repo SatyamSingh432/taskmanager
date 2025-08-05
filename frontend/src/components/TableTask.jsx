@@ -1,17 +1,19 @@
 import React from "react";
 import { FaTrash, FaDownload } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+import { deleteTask } from "../utils/Apis";
 
 const TableTask = ({
   title,
   description,
-  // task,
+  taskDelete,
   deadline,
   status,
   setIsModalOpen,
   setEditForm,
   setFormData,
   setTaskId,
+  setUpdateData,
 }) => {
   const editHandler = () => {
     setIsModalOpen(true);
@@ -55,6 +57,10 @@ const TableTask = ({
         </button>
         <button
           title="Delete"
+          onClick={async () => {
+            await deleteTask(taskDelete);
+            setUpdateData({});
+          }}
           className="text-red-600 hover:text-red-800 cursor-pointer"
         >
           <FaTrash />
