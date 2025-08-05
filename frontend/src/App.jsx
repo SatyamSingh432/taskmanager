@@ -48,7 +48,7 @@ function App() {
           <tbody>
             {allTasks?.map((ele) => {
               const dateObj = new Date(ele.deadline);
-              const formatted = dateObj.toLocaleDateString("en-IN");
+              const formatted = dateObj.toISOString().split("T")[0];
               return (
                 <TableTask
                   key={ele._id}
