@@ -30,7 +30,16 @@ const TableTask = ({
     <tr className="border-b border-gray-300 text-left text-xs hover:bg-gray-50 py-5">
       <td className="px-2  py-4">{title}</td>
       <td className="px-2  py-4">{description}</td>
-      <td className="px-2  py-4">{deadline}</td>
+      <td className="px-2  py-4">
+        <div>{new Date(deadline).toLocaleDateString()}</div>
+        <div className="text-xs text-gray-500">
+          {status === "DONE"
+            ? "Achieved"
+            : new Date(deadline) < new Date()
+            ? "Failed"
+            : "In Progress"}
+        </div>
+      </td>
       <td className="px-2  py-4">
         <span
           className={`text-white text-xs px-3 py-1 rounded-full ${
