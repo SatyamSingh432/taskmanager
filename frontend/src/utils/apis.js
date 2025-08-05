@@ -1,6 +1,6 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:8082/v1/task";
-// const BASE_URL = "https://taskmanager-4nhi.onrender.com/v1/task";
+// const BASE_URL = "http://localhost:8082/v1/task";
+const BASE_URL = "https://taskmanager-4nhi.onrender.com/v1/task";
 
 export const createTask = async (taskData) => {
   console.log(taskData.file);
