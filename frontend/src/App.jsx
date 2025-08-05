@@ -36,38 +36,44 @@ function App() {
     <div>
       <NavBar />
       <div className="bg-white  w-screen flex justify-center pt-6 ">
-        <table className="text-sm shadow-xl">
-          <thead>
-            <tr className=" text-left text-gray-600 font-semibold border-b border-gray-300 ">
-              <th className="px-2 w-[120px] py-4">Title</th>
-              <th className="px-2  w-[300px] py-4">Description</th>
-              <th className="px-2  w-[180px] py-4">Deadline</th>
-              <th className="px-2  w-[120px] py-4">Status</th>
-              <th className="px-2  w-[180px] py-4"> Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allTasks?.map((ele) => {
-              const dateObj = new Date(ele.deadline);
-              const formatted = dateObj.toISOString().split("T")[0];
-              return (
-                <TableTask
-                  key={ele._id}
-                  taskDelete={ele._id}
-                  title={ele.title}
-                  description={ele.description}
-                  deadline={formatted}
-                  status={ele.status}
-                  setIsModalOpen={setIsModalOpen}
-                  setEditForm={setEditForm}
-                  setFormData={setFormData}
-                  setTaskId={() => setTaskId(ele._id)}
-                  setUpdateData={setUpdateData}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        {allTasks.length === 0 ? (
+          <div className="w-screen h-[80vh] flex justify-center items-center text-2xl">
+            <p>No tasks found!</p>
+          </div>
+        ) : (
+          <table className="text-sm shadow-xl">
+            <thead>
+              <tr className=" text-left text-gray-600 font-semibold border-b border-gray-300 ">
+                <th className="px-2 w-[120px] py-4">Title</th>
+                <th className="px-2  w-[300px] py-4">Description</th>
+                <th className="px-2  w-[180px] py-4">Deadline</th>
+                <th className="px-2  w-[120px] py-4">Status</th>
+                <th className="px-2  w-[180px] py-4"> Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allTasks?.map((ele) => {
+                const dateObj = new Date(ele.deadline);
+                const formatted = dateObj.toISOString().split("T")[0];
+                return (
+                  <TableTask
+                    key={ele._id}
+                    taskDelete={ele._id}
+                    title={ele.title}
+                    description={ele.description}
+                    deadline={formatted}
+                    status={ele.status}
+                    setIsModalOpen={setIsModalOpen}
+                    setEditForm={setEditForm}
+                    setFormData={setFormData}
+                    setTaskId={() => setTaskId(ele._id)}
+                    setUpdateData={setUpdateData}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
       <button
         onClick={() => setIsModalOpen(true)}
