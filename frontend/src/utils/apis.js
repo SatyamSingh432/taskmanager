@@ -9,8 +9,9 @@ export const createTask = async (taskData) => {
     formData.append("title", taskData.title);
     formData.append("description", taskData.description);
     formData.append("deadline", taskData.deadline);
-    formData.append("file", taskData.file);
-
+    if (taskData.file) {
+      formData.append("file", taskData.file);
+    }
     const response = await axios.post(`${BASE_URL}/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

@@ -17,7 +17,7 @@ export const createTask = async (req, res) => {
       title,
       description,
       deadline,
-      file: req.file.buffer,
+      file: req.file?.buffer,
     });
     res.status(201).json(task);
   } catch (err) {
