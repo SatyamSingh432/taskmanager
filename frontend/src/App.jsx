@@ -102,7 +102,7 @@ function App() {
       </div>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-600 text-white  rounded-full px-4 py-2 shadow-lg text-xl"
+        className="fixed bottom-6 right-6 bg-blue-600 text-white  rounded-full px-4 py-2 shadow-lg text-xl cursor-pointer"
       >
         +
       </button>
